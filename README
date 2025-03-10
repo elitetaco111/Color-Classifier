@@ -1,0 +1,3 @@
+This is the project for the Rally House Color Classifier
+The goal of the project is to classify the parent color for items in the rally house catalog
+Using KNN logic with ball-tree grouping to determine results
