@@ -1,6 +1,7 @@
 import joblib
 import os
 import cv2
+import numpy as np
 
 #load the model
 knn_loaded = joblib.load("color_model.pkl")
