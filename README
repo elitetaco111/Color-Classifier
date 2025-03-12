@@ -1,3 +1,28 @@
+ .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------. 
+| .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+| |     ______   | || |     ____     | || |   _____      | || |     ____     | || |  _______     | || |    _______   | |
+| |   .' ___  |  | || |   .'    `.   | || |  |_   _|     | || |   .'    `.   | || | |_   __ \    | || |   /  ___  |  | |
+| |  / .'   \_|  | || |  /  .--.  \  | || |    | |       | || |  /  .--.  \  | || |   | |__) |   | || |  |  (__ \_|  | |
+| |  | |         | || |  | |    | |  | || |    | |   _   | || |  | |    | |  | || |   |  __ /    | || |   '.___`-.   | |
+| |  \ `.___.'\  | || |  \  `--'  /  | || |   _| |__/ |  | || |  \  `--'  /  | || |  _| |  \ \_  | || |  |`\____) |  | |
+| |   `._____.'  | || |   `.____.'   | || |  |________|  | || |   `.____.'   | || | |____| |___| | || |  |_______.'  | |
+| |              | || |              | || |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------' 
+
 This is the project for the Rally House Color Classifier
 The goal of the project is to classify the parent color for items in the rally house catalog
 Using KNN logic with ball-tree grouping to determine results
+
+scraper.py
+-takes a file named data.csv full of SKUs with the header name
+-downloads to a folder called scraped images
+
+classifier.py
+-"trains" KNN algorithm with the images in img/
+-can switch pixel choice b/t average color val and center pixel
+-saves model as color_modelv1.pkl
+
+whatcolor.py
+-runs the KNN model on test_img.jpg
+-prints result color to console
