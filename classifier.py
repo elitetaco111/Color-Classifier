@@ -1,11 +1,11 @@
 import cv2
 import os
 import numpy as np
-from neighbors import KNeighborsClassifier
-from neighbors import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
 
 #number of colors to classify
-n = 10
+n = 2
 
 #how to calc mean image color
 def extract_color_features(image_path):
@@ -28,7 +28,7 @@ def get_center_pixel_color(image_path):
 #ONLY CHOOSE ONE OF THE ABOVE METHODS (just func defs up here though)
 
 #define where data is coming from
-data_path = "data/" #folder named data with folders of colors
+data_path = "img/" #folder named img with folders of colors
 x = []
 y = []
 
@@ -40,15 +40,15 @@ for color_label in os.listdir(data_path):
     
     for img_file in os.listdir(folder_path):
         img_path = os.path.join(folder_path, img_file)
-        center_color = get_center_pixel_color(img_path) #Where to choose what center color method to use
+        center_color = extract_color_features(img_path) #Where to choose what center color method to use
         x.append(center_color)
         y.append(color_label)
 
-X = np.array(x)
+x = np.array(x)
 y = np.array(y)
 
 #split data into test and validation datasets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
 knn = KNeighborsClassifier(n_neighbors=n)  #set to train using n neighbors
 knn.fit(X_train, y_train) #actually train the model

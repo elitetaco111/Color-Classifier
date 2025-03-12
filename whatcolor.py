@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 
 #load the model
-knn_loaded = joblib.load("color_model.pkl")
+knn_loaded = joblib.load("color_modelv1.pkl")
 print("Model loaded successfully!")
 
 #how to calc mean image color
@@ -28,7 +28,7 @@ def get_center_pixel_color(image_path):
 #ONLY CHOOSE ONE OF THE ABOVE METHODS (just func defs up here though)
 
 def predict_color(image_path, model):
-    center_color = get_center_pixel_color(image_path).reshape(1, -1)  # Reshape for prediction
+    center_color = extract_color_features(image_path).reshape(1, -1)  # Reshape for prediction
     predicted_label = model.predict(center_color)
     return predicted_label[0]
 
