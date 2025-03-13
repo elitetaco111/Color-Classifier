@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 #load the model
-knn_loaded = joblib.load("color_modelv2.pkl")
+knn_loaded = joblib.load("color_modelv3.pkl")
 print("Model loaded successfully!")
 
 #how to calc mean image color
@@ -14,6 +14,26 @@ def extract_color_features(image_path):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) #RGB conversion func
     mean_color = np.mean(image, axis=(0, 1)) #mean the color values
     return mean_color
+
+#calc mean color without white pixels
+def extract_color_features_nw(image_path):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  #convert to RGB
+
+    #create a mask for non-white pixels
+    mask = ~(np.all(image == [255, 255, 255], axis=-1))
+
+    #extract non-white pixels to mask
+    non_white_pixels = image[mask]
+
+    #compute mean color
+    if len(non_white_pixels) > 0:
+        mean_color = np.mean(non_white_pixels, axis=0)
+    else:
+        mean_color = [0, 0, 0]  #default to black if no valid pixels
+
+    return mean_color
+
 
 #how to get central pixel color value
 def get_center_pixel_color(image_path):
@@ -29,7 +49,7 @@ def get_center_pixel_color(image_path):
 #ONLY CHOOSE ONE OF THE ABOVE METHODS (just func defs above here though)
 
 def predict_color(image_path, model):
-    center_color = extract_color_features(image_path).reshape(1, -1)  # Reshape for prediction
+    center_color = extract_color_features_nw(image_path).reshape(1, -1)  # Reshape for prediction
     predicted_label = model.predict(center_color)
     return predicted_label[0]
 
@@ -57,5 +77,5 @@ def process_images_from_folder(folder_path, model, output_file):
 #multi image test vvvvvvvv
 
 image_folder = "test/"  
-output_csv = "color_predictions.csv"
+output_csv = "color_predictions2.csv"
 process_images_from_folder(image_folder, knn_loaded, output_csv)
