@@ -57,5 +57,5 @@ knn.fit(X_train, y_train) #actually train the model
 import joblib
 
 # Save the trained model to a file
-joblib.dump(knn, "color_modelv1.pkl")
+joblib.dump(knn, "color_modelv2.pkl")
 print("Model saved successfully!")

@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 #constant vars
-CSV_FILE = 'data.csv'
-FOLDER_NAME = 'scraped_images'
+CSV_FILE = 'images.csv'
+FOLDER_NAME = 'images'
 BASE_URL = 'https://media.rallyhouse.com/homepage/{}-1.jpg?tx=f_auto,c_fit,w_730,h_730'
 
 #create the folder to store scraped images
@@ -42,4 +42,3 @@ for Name in dataFile[ITEM_COL]:
     except requests.exceptions.RequestException as e:
         print(f"Failed to download {Name}: {e}")
 print('Download Complete')
-    
