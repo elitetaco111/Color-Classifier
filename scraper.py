@@ -35,6 +35,10 @@ for Name in dataFile[ITEM_COL]:
 
         #open and save image
         image = Image.open(BytesIO(response.content))
+
+        if image.mode == "P":
+            image = image.convert("RGB")
+        
         image_path = os.path.join(FOLDER_NAME, f"{Name}.jpg")
         image.save(image_path)
 
