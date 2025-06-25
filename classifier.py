@@ -47,7 +47,7 @@ def get_center_pixel_color(image_path):
 #ONLY CHOOSE ONE OF THE ABOVE METHODS (just func defs up here though)
 
 #define where data is coming from
-data_path = "img/" #folder named img with folders of colors
+data_path = "color/" #folder named img with folders of colors
 x = []
 y = []
 
@@ -76,5 +76,5 @@ knn.fit(X_train, y_train) #actually train the model
 import joblib
 
 # Save the trained model to a file
-joblib.dump(knn, "color_modelv3.pkl")
+joblib.dump(knn, "gray_model.pkl")
 print("Model saved successfully!")

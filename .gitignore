@@ -29,3 +29,15 @@ Thumbs.db
 *.keras
 *.avif
 *.pkl
+*.zip
+*.joblib
+holidays_generation.py
+/Potential Color Solution/*
+/__pycache__/*
+*.toc
+*.pyz
+*.pkg
+*.html
+*.txt
+*.pyc
+*.spec
